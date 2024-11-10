@@ -17,73 +17,42 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
 
---
 -- Database: `php_docker`
---
-
 -- --------------------------------------------------------
 
---
--- Table structure for table `php_docker_table`
---
-CREATE TABLE `blog` (
-  `id` int NOT NULL,
-  `title` varchar(255) NOT NULL,
-  `body` text NOT NULL,
-  `date_created` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Dumping data for table `php_docker_table`
---
-INSERT INTO `blog` (`id`, `title`, `body`, `date_created`) VALUES
-(1, 'first post', 'first body text', '2022-09-01'),
-(2, 'second post', 'second body text', '2022-09-03'),
-(3, 'third post', 'thirdbody text', '2022-09-07');
-
-ALTER TABLE `blog`
-  ADD PRIMARY KEY (`id`);
-
-
-CREATE TABLE `Employee` (
-  `id` int NOT NULL,
-  `Full_name` varchar(255) NOT NULL,
+CREATE TABLE `Account` (
+  `acc_id` int NOT NULL,
+  `task_id` int not null,
+  `email_add`varchar(255) not null,
+  `full_name` varchar(255) NOT NULL,
   `job_position` text NOT NULL,
-  `date_started` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `date_started` date NOT NULL,
+  `salary` int not null,
+  `department` varchar(255) not null,
+  `acc_password` varchar(255) not null,
+  foreign key (Tasks) references task_id) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
---
--- Dumping data for table `php_docker_table`
---
+INSERT INTO `Account` (`acc_id`,`task_id`,`email_add`, `full_name`, `job_position`, `date_started`,`salary`,`department`,`acc_password`) VALUES
+(1, 1,'spark20@umbc.edu','Savannah Park', 'Program manager', '2022-09-01',70000,'Finance','blue12!'),
+(2, 2, 'moonstar@gmail.com','Luna Moon', 'Project Scheduler', '2022-09-03',65000,'Engineering', 'engine20@'),
+(3, 3, 'devdev12@gmail.com','Deven Roe', 'Financial Analyst', '2022-09-07',70000,'Finance','icemoney100!'),
+(4, 4, 'randomstuff12@gmail.com','Bob Rodger', 'Receptionist', '2022-09-07',60000,'Finance', 'blahblah09@');
 
-INSERT INTO `Employee` (`id`, `Full_name`, `job_position`, `date_started`) VALUES
-(1, 'Savannah', 'Artist', '2022-09-01'),
-(2, 'second post', 'baker', '2022-09-03'),
-(3, 'third post', 'cashier', '2022-09-07'),
-(4, 'third post', 'program manager', '2022-09-07');
+CREATE TABLE `Tasks` (
+  `task_id` int NOT NULL,
+  `acc_id` int not null,
+  `task_name` varchar(255) NOT NULL,
+  `task_percentage` int NOT NULL,
+  `task_deadline` date NOT NULL,
+  foreign key (Account) references acc_id)
+  ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
---
--- Indexes for dumped tables
---
+INSERT INTO `Tasks` (`task_id`,`acc_id`, `task_name`, `task_percentage`, `task_deadline`) VALUES
+(1, 1,'Monthly Reports', 50, '2025-02-01'),
+(2, 2,'Baseline Execution Index', 65, '2024-05-02'),
+(3, 3,'WBS Creation', 90, '2025-09-07'),
+(4, 4,'Host Media Forum', 75, '2025-04-07');
 
---
--- Indexes for table `php_docker_table`
---
-
-
-  ALTER TABLE `Employee`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `php_docker_table`
---
-ALTER TABLE `blog`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
