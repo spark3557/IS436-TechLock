@@ -43,17 +43,19 @@ CREATE TABLE `Tasks` (
   `task_id` int NOT NULL,
   `acc_id` int NOT NULL,
   `task_name` varchar(255) NOT NULL,
+  `task_describe` varchar(255) NOT NULL,
   `task_percentage` int NOT NULL,
   `task_deadline` date NOT NULL,
   PRIMARY KEY (`task_id`),
   FOREIGN KEY (`acc_id`) REFERENCES `Account`(`acc_id`)
 );
 
-INSERT INTO `Tasks` (`task_id`,`acc_id`, `task_name`, `task_percentage`, `task_deadline`) VALUES
-(1, 1,'Monthly Reports', 50, '2025-02-01'),
-(2, 2,'Baseline Execution Index', 65, '2024-05-02'),
-(3, 3,'WBS Creation', 90, '2025-09-07'),
-(4, 4,'Host Media Forum', 75, '2025-04-07');
+INSERT INTO `Tasks` (`task_id`,`acc_id`, `task_name`,`task_describe`, `task_percentage`, `task_deadline`) VALUES
+(1, 1,'Monthly Reports','Production of reports about the projects status each month' 50, '2025-02-01'),
+(2, 2,'Baseline Execution Index','Calculates the efficiency with which tasks have been accomplished when measured against the baseline tasks at a Status Date over a span of time', 65, '2024-05-02'),
+(3, 3,'WBS Creation', 'Produce a Work breakdown structure that breaks down the project into smaller components according to schedule',90, '2025-09-07'),
+(4, 4,'Host Media Forum', 'Host a media forum that discusses the importance of media training for the company and learning to communicate effectively.',75, '2025-04-07');
+
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
