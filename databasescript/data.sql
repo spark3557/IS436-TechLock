@@ -34,8 +34,8 @@ CREATE TABLE `Account` (
 );
 
 INSERT INTO `Account` (`acc_id`,`email_add`, `full_name`, `job_position`, `date_started`,`salary`,`department`,`acc_password`) VALUES
-(1, 'spark20@umbc.edu','Savannah Park', 'Program manager', '2022-09-01',70000,'Finance','blue12!'),
-(2, 'moonstar@gmail.com','Luna Moon', 'Project Scheduler', '2022-09-03',65000,'Engineering', 'engine20@'),
+(1, 'spark20@umbc.edu','Savannah Park', 'Program scheduler', '2022-09-01',70000,'Finance','blue12!'),
+(2, 'moonstar@gmail.com','Luna Moon', 'Project manager', '2022-09-03',65000,'Engineering', 'engine20@'),
 (3, 'devdev12@gmail.com','Deven Roe', 'Financial Analyst', '2022-09-07',70000,'Finance','icemoney100!'),
 (4, 'randomstuff12@gmail.com','Bob Rodger', 'Receptionist', '2022-09-07',60000,'Finance', 'blahblah09@');
 
