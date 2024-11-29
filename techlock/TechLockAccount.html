@@ -4,11 +4,17 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap.min.css">
     <title>Account Profile</title>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-  
     <style>
+.nav-link.active {
+        background-color: DarkTurquoise;
+        color: white;
+        border-radius: 4px;
+        padding: 8px 16px;
+      }
+
       body {
         background-color: #f8f9fa;
         margin: 0;
@@ -22,35 +28,72 @@
         border-radius: 10px;
         box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
         margin-bottom: 20px;
-      }
-
-      .profile-container {
-        max-width: 900px;
-        margin: 20px auto;
-      }
-
-      .tasks-container {
         max-width: 900px;
         margin: 20px auto;
       }
 
       h2 {
-        text-align: left;
         font-size: 30px;
         margin-bottom: 20px;
         color: #333;
       }
 
-      .profile-info {
+      .profile-info, .table {
         margin-bottom: 15px;
       }
 
-      .table {
-        margin-bottom: 0;
+      .modal-header {
+        background-color: #333;
+        color: #fff;
+      }
+
+      .task-form-container {
+        background-color: #f7f7f7;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        margin-bottom: 20px;
+      }
+
+      .form-label {
+        font-weight: bold;
+      }
+
+      .task-layout {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: space-between;
+        margin: 0 40px; 
+      }
+
+      .tasks-table-container {
+        flex: 0 0 55%; 
+        background-color: #f7f7f7; 
+        padding: 20px; 
+        border-radius: 10px; 
+        border: 1px solid #ddd; 
+      }
+
+      .task-form-container {
+        flex: 0 0 43%; 
+      }
+
+      @media (max-width: 768px) {
+        .task-layout {
+          flex-direction: column;
+          gap: 20px;
+        }
+
+        .tasks-table-container,
+        .task-form-container {
+          flex: 1; 
+        }
       }
     </style>
   </head>
   <body class="p-3 m-0 border-0 bd-example">
+
     <!-- Navigation bar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-black">
       <div class="container-fluid">
@@ -66,170 +109,270 @@
             <li class="nav-item mx-3"><a class="nav-link text-white" href="TechLockEmployee.html">Employee</a></li>
             <li class="nav-item mx-3"><a class="nav-link text-white" href="TechLockContact.html">Contact Us</a></li>
             <li class="nav-item mx-3"><a class="nav-link text-white" href="TechLockAboutUs.html">About Us</a></li>
-            <li class="nav-item mx-3"><a class="nav-link active text-white" href="TechLockAccount.html">Account</a></li>
+            <li class="nav-item mx-3"><a class="nav-link active text-white" href="TechLockLogin.html">Account</a></li>
           </ul>
         </div>
       </div>
     </nav>
 
-    <style>
-      .nav-link.active {
-        background-color: DarkTurquoise;
-        color: white;
-        border-radius: 4px;
-        padding: 8px 16px;
-      }
-    </style>
-
     <!-- Profile Section -->
     <div class="profile-container">
       <h2>Profile</h2>
-      <div class="profile-info">
-        <strong>Name:</strong> <span id="profileName"></span>
+      <div class="profile-info"><strong>Name:</strong> <span id="profileName"></span></div>
+      <div class="profile-info"><strong>Email:</strong> <span id="profileEmail"></span></div>
+      <div class="profile-info"><strong>Department:</strong> <span id="profileDepartment"></span></div>
+      <div class="profile-info"><strong>Job Position:</strong> <span id="profileJobPosition"></span></div>
+      <div class="profile-info"><strong>Date Started:</strong> <span id="profileDateStarted"></span></div>
+      <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#updateProfileModal">Update Profile</button>
+    </div>
+
+
+    <div class="task-layout">
+      <div class="tasks-table-container">
+        <h2>Tasks</h2>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Task Name</th>
+              <th>Task Status %</th>
+              <th>Task Description</th>
+              <th>Task Deadline</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="taskList"></tbody>
+        </table>
       </div>
-      <div class="profile-info">
-        <strong>Email:</strong> <span id="profileEmail"></span>
-      </div>
-      <div class="profile-info">
-        <strong>Department:</strong> <span id="profileDepartment"></span>
-      </div>
-      <div class="profile-info">
-        <strong>Job Position:</strong> <span id="profileJobPosition"></span>
-      </div>
-      <div class="profile-info">
-        <strong>Date Started:</strong> <span id="profileDateStarted"></span>
+
+      <!-- New Task Form -->
+      <div class="task-form-container">
+        <h2>Add New Task</h2>
+        <form id="newTaskForm">
+          <div class="mb-3">
+            <label for="taskName" class="form-label">Task Name</label>
+            <input type="text" class="form-control" id="taskName" required>
+          </div>
+          <div class="mb-3">
+            <label for="taskStatus" class="form-label">Task Status %</label>
+            <input type="number" class="form-control" id="taskStatus" required>
+          </div>
+          <div class="mb-3">
+            <label for="taskDescription" class="form-label">Task Description</label>
+            <input type="text" class="form-control" id="taskDescription" required>
+          </div>
+          <div class="mb-3">
+            <label for="taskDeadline" class="form-label">Task Deadline</label>
+            <input type="date" class="form-control" id="taskDeadline" required>
+          </div>
+          <button type="submit" class="btn btn-success">Add Task</button>
+        </form>
       </div>
     </div>
 
-    <!-- Tasks Section -->
-    <div class="tasks-container">
-      <h2>Tasks</h2>
-      <table class="table table-striped table-bordered" id="taskStatsTable">
-        <thead>
-          <tr>
-            <th>Task Name</th>
-            <th>Task Status %</th>
-            <th>Task Description</th>
-            <th>Task Deadline</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody id="taskList">
-        </tbody>
-      </table>
-<br  />
-<br  />
 
-  <h3 class="mt-4">Add Task</h3>
-      <form id="taskForm" class="mt-3">
-        <div class="mb-3">
-          <label for="task_name" class="form-label">Task Name</label>
-          <input type="text" class="form-control" id="task_name" placeholder="Enter task name" required>
+    <!-- Update Profile Modal -->
+    <div class="modal fade" id="updateProfileModal" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Update Profile</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <form id="updateProfileForm">
+              <div class="mb-3">
+                <label for="updateName" class="form-label">Name</label>
+                <input type="text" class="form-control" id="updateName" required>
+              </div>
+              <div class="mb-3">
+                <label for="updateDepartment" class="form-label">Department</label>
+                <input type="text" class="form-control" id="updateDepartment" required>
+              </div>
+              <div class="mb-3">
+                <label for="updateJobPosition" class="form-label">Job Position</label>
+                <input type="text" class="form-control" id="updateJobPosition" required>
+              </div>
+              <div class="mb-3">
+                <label for="updateDateStarted" class="form-label">Date Started</label>
+                <input type="date" class="form-control" id="updateDateStarted" required>
+              </div>
+              <button type="submit" class="btn btn-success">Save Changes</button>
+            </form>
+          </div>
         </div>
-        <div class="mb-3">
-          <label for="task_percentage" class="form-label">Task Status %</label>
-          <input type="number" class="form-control" id="task_percentage" placeholder="Enter task percentage finished" required>
+      </div>
+    </div>
+
+    <!-- Update Task Modal -->
+    <div class="modal fade" id="updateTaskModal" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Update Task</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <form id="updateTaskForm">
+              <input type="hidden" id="taskIndex">
+              <div class="mb-3">
+                <label for="updateTaskName" class="form-label">Task Name</label>
+                <input type="text" class="form-control" id="updateTaskName" required>
+              </div>
+              <div class="mb-3">
+                <label for="updateTaskStatus" class="form-label">Task Status %</label>
+                <input type="number" class="form-control" id="updateTaskStatus" required>
+              </div>
+              <div class="mb-3">
+                <label for="updateTaskDescription" class="form-label">Task Description</label>
+                <input type="text" class="form-control" id="updateTaskDescription" required>
+              </div>
+              <div class="mb-3">
+                <label for="updateTaskDeadline" class="form-label">Task Deadline</label>
+                <input type="date" class="form-control" id="updateTaskDeadline" required>
+              </div>
+              <button type="submit" class="btn btn-success">Save Changes</button>
+            </form>
+          </div>
         </div>
-        <div class="mb-3">
-          <label for="task_describe" class="form-label">Task Description</label>
-          <input type="text" class="form-control" id="task_describe" placeholder="Enter task description" required>
-        </div>
-        <div class="mb-3">
-          <label for="task_deadline" class="form-label">Task Deadline</label>
-          <input type="date" class="form-control" id="task_deadline" required>
-        </div>
-        <button type="submit" class="btn btn-primary">Add Task</button>
-      </form>
+      </div>
     </div>
 
     <script>
+      // Filler stuff that shows if theres en error
+      let profile = {
+        name: localStorage.getItem('name') || 'Robert Doe',
+        email: localStorage.getItem('email') || 'Robertdoe@example.com',
+        department: localStorage.getItem('department') || 'IT',
+        jobPosition: localStorage.getItem('jobPosition') || 'Developer',
+        dateStarted: localStorage.getItem('dateStarted') || '2027-01-01'
+      };
 
-  window.onload = function() {
-    const name = localStorage.getItem('name');
-    const email = localStorage.getItem('email');
-    const department = localStorage.getItem('department');
-    const jobPosition = localStorage.getItem('jobposition');
-    const dateStarted = localStorage.getItem('datestarted');
-
-    // Display profile
-    if (name && email && department && jobPosition && dateStarted) {
-      document.getElementById('profileName').innerText = name;
-      document.getElementById('profileEmail').innerText = email;
-      document.getElementById('profileDepartment').innerText = department;
-      document.getElementById('profileJobPosition').innerText = jobPosition;
-      document.getElementById('profileDateStarted').innerText = dateStarted;
-    } else {
-      alert("No profile data found. Please register first.");
-      window.location.href = "TechLockRegister.html"; // Redirect if no profile data
-    }
-
-    // Save profile data to localStorage for employee
-    localStorage.setItem('name', document.getElementById('profileName').innerText);
-    localStorage.setItem('email', document.getElementById('profileEmail').innerText);
-    localStorage.setItem('department', document.getElementById('profileDepartment').innerText);
-    localStorage.setItem('jobposition', document.getElementById('profileJobPosition').innerText);
-    localStorage.setItem('datestarted', document.getElementById('profileDateStarted').innerText);
-
-    updateTaskTable();
-  };
-
-
-
-      let taskData = [
-        { name: "Monthly Reports", status: 50, description: "Production of reports about the project status each month", deadline: "2025-02-01" },
+      // Initialize tasks data
+      let tasks = [
+      { name: "Monthly Reports", status: 50, description: "Production of reports about the project status each month", deadline: "2025-02-01" },
         { name: "Baseline Execution Index", status: 65, description: "Calculates efficiency with baseline tasks", deadline: "2024-05-02" },
         { name: "WBS Creation", status: 90, description: "Breaks down project components", deadline: "2025-09-07" },
         { name: "MSP Training Manual", status: 75, description: "Guide on Microsoft Project and company guidelines", deadline: "2025-04-07" },
       ];
 
+      //Profile Section
+      function populateProfile() {
+        document.getElementById('profileName').textContent = profile.name;
+        document.getElementById('profileEmail').textContent = profile.email;
+        document.getElementById('profileDepartment').textContent = profile.department;
+        document.getElementById('profileJobPosition').textContent = profile.jobPosition;
+        document.getElementById('profileDateStarted').textContent = profile.dateStarted;
+      }
 
-      function updateTaskTable() {
-  const tableBody = document.getElementById("taskList");
-  tableBody.innerHTML = '';
+      // Tasks Table
+      function populateTasks() {
+        const taskList = document.getElementById('taskList');
+        taskList.innerHTML = '';
+        tasks.forEach((task, index) => {
+          const row = document.createElement('tr');
+          row.innerHTML = `
+            <td>${task.name}</td>
+            <td>${task.status}%</td>
+            <td>${task.description}</td>
+            <td>${task.deadline}</td>
+            <td>
+              <button class="btn btn-warning btn-sm" onclick="showUpdateTaskModal(${index})">Update</button>
+              <button class="btn btn-danger btn-sm" onclick="removeTask(${index})">Remove</button>
+            </td>
+          `;
+          taskList.appendChild(row);
+        });
+      }
 
-  taskData.forEach((task, index) => {
-    const row = document.createElement("tr");
-    row.innerHTML = `
-      <td>${task.name}</td>
-      <td>
-        <div class="progress" style="height: 20px;">
-          <div class="progress-bar" role="progressbar" style="width: ${task.status}%; background-color: ${
-      task.status === 100 ? "green" : "darkturqouise"
-    };" aria-valuenow="${task.status}" aria-valuemin="0" aria-valuemax="100">
-            ${task.status}%
-          </div>
-        </div>
-      </td>
-      <td>${task.description}</td>
-      <td>${task.deadline}</td>
-      <td><button onclick="removeTask(${index})" class="btn btn-danger">Remove</button></td>
-    `;
-    tableBody.appendChild(row);
-  });
-}
+      // Add new task
+      document.getElementById('newTaskForm').addEventListener('submit', function (e) {
+        e.preventDefault();
 
+        const newTask = {
+          name: document.getElementById('taskName').value,
+          status: document.getElementById('taskStatus').value,
+          description: document.getElementById('taskDescription').value,
+          deadline: document.getElementById('taskDeadline').value,
+        };
 
-      // Add a new task
-      document.getElementById("taskForm").addEventListener("submit", function(event) {
-        event.preventDefault();
-
-        const taskName = document.getElementById("task_name").value;
-        const taskStatus = document.getElementById("task_percentage").value;
-        const taskDescription = document.getElementById("task_describe").value;
-        const taskDeadline = document.getElementById("task_deadline").value;
-
-        taskData.push({ name: taskName, status: taskStatus, description: taskDescription, deadline: taskDeadline });
-        updateTaskTable();
-        document.getElementById("taskForm").reset();
+        tasks.push(newTask);
+        populateTasks();
+        document.getElementById('newTaskForm').reset();
       });
 
-      // Remove a task
-      function removeTask(index) {
-        taskData.splice(index, 1);
-        updateTaskTable();
+      // Profile Update
+      document.getElementById('updateProfileForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+        profile.name = document.getElementById('updateName').value;
+        profile.department = document.getElementById('updateDepartment').value;
+        profile.jobPosition = document.getElementById('updateJobPosition').value;
+        profile.dateStarted = document.getElementById('updateDateStarted').value;
+        Object.keys(profile).forEach(key => localStorage.setItem(key, profile[key]));
+
+        populateProfile();
+        const modal = bootstrap.Modal.getInstance(document.getElementById('updateProfileModal'));
+        modal.hide();
+      });
+
+      function showUpdateTaskModal(index) {
+        const task = tasks[index];
+        document.getElementById('taskIndex').value = index;
+        document.getElementById('updateTaskName').value = task.name;
+        document.getElementById('updateTaskStatus').value = task.status;
+        document.getElementById('updateTaskDescription').value = task.description;
+        document.getElementById('updateTaskDeadline').value = task.deadline;
+
+        const modal = new bootstrap.Modal(document.getElementById('updateTaskModal'));
+        modal.show();
       }
+
+      // task update
+      document.getElementById('updateTaskForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+        const index = document.getElementById('taskIndex').value;
+        tasks[index].name = document.getElementById('updateTaskName').value;
+        tasks[index].status = document.getElementById('updateTaskStatus').value;
+        tasks[index].description = document.getElementById('updateTaskDescription').value;
+        tasks[index].deadline = document.getElementById('updateTaskDeadline').value;
+
+        populateTasks();
+        const modal = bootstrap.Modal.getInstance(document.getElementById('updateTaskModal'));
+        modal.hide();
+      });
+
+      function removeTask(index) {
+        tasks.splice(index, 1);
+        populateTasks();
+      }
+
+      populateProfile();
+      populateTasks();
     </script>
+
+    <!-- Footer -->
+    <footer class="pt-4 my-md-5 pt-md-5 border-top">
+      <div class="row">
+        <div class="col-12 col-md">
+          <a href="#">
+            <img src="TechLockLogoWhite.png" width="250" alt="" class="img-fluid">
+          </a>
+        </div>
+        <div class="col-6 col-md">
+          <h5>Resources</h5>
+          <ul class="list-unstyled text-small">
+            <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Blog</a></li>
+            <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Onboarding</a></li>
+          </ul>
+        </div>
+        <div class="col-6 col-md">
+          <h5>About</h5>
+          <ul class="list-unstyled text-small">
+            <li class="mb-1"><a class="link-secondary text-decoration-none" href="TechLockAboutUs.html">About Us</a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+
+
   </body>
 </html>
-
-
