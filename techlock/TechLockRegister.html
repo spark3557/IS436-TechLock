@@ -21,11 +21,16 @@
         text-align: center;
         font-size: 45px;
       }
+      .nav-link.active {
+        background-color: DarkTurquoise;
+        color: white;
+        border-radius: 4px;
+        padding: 8px 16px;
+      }
     </style>
   </head>
+  <!-- Navigation bar -->
   <body class="p-3 m-0 border-0 bd-example">
-
-    <!-- Navigation bar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-black">
       <div class="container-fluid">
         <a class="navbar-brand" href="index.html">
@@ -45,15 +50,6 @@
         </div>
       </div>
     </nav>
-
-    <style>
-      .nav-link.active {
-        background-color: DarkTurquoise;
-        color: white;
-        border-radius: 4px;
-        padding: 8px 16px;
-      }
-    </style>
 
     <!-- Wrapper container -->
     <div class="container py-4">
@@ -83,12 +79,9 @@
           <label class="form-label" for="datestarted">Date Started</label>
           <input class="form-control" id="datestarted" type="date" placeholder="Date Started" required />
         </div>
-        <!-- Register button -->
         <div class="d-grid">
           <button class="btn btn-lg" type="submit" style="background-color: darkturquoise; border-color: darkturquoise; color: white;">Register</button>
         </div>
-
-        <!-- Link to login page -->
         <p>Already have an account? <a href="TechLockLogin.html">Log in here.</a></p>
       </form>
     </div>
@@ -118,29 +111,29 @@
     </script>
     
 
-    <!-- Footer -->
-    <footer class="pt-4 my-md-5 pt-md-5 border-top">
-      <div class="row">
-        <div class="col-12 col-md">
-          <a href="#">
-            <img src="TechLockLogoWhite.png" width="250" alt="" class="img-fluid">
-          </a>
-        </div>
-        <div class="col-6 col-md">
-          <h5>Resources</h5>
-          <ul class="list-unstyled text-small">
-            <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Blog</a></li>
-            <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Onboarding</a></li>
-          </ul>
-        </div>
-        <div class="col-6 col-md">
-          <h5>About</h5>
-          <ul class="list-unstyled text-small">
-            <li class="mb-1"><a class="link-secondary text-decoration-none" href="TechLockAboutUs.html">About Us</a></li>
-          </ul>
-        </div>
+    	<!-- Footer Code -->
+  <footer class="pt-4 my-md-5 pt-md-5 border-top">
+    <div class="row">
+      <div class="col-12 col-md">
+       <a href="#">
+      <img src="TechLockLogoWhite.png" width="250" alt="" class="img-fluid">
+    </a>
       </div>
-    </footer>
+      <div class="col-6 col-md">
+        <h5>Resources</h5>
+        <ul class="list-unstyled text-small">
+          <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Blog</a></li>
+    <li class="mb-1"><a class="link-secondary text-decoration-none" href="TechLockContact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="col-6 col-md">
+        <h5>About</h5>
+        <ul class="list-unstyled text-small">
+          <li class="mb-1"><a class="link-secondary text-decoration-none" href="TechLockAboutUs.html">About Us</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
 
   </body>
 </html>

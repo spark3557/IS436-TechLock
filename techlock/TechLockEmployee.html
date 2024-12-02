@@ -14,17 +14,14 @@
         margin: 0;
         padding: 0;
       }
-
       .employee-card {
         margin-bottom: 20px;
       }
-      
       .card {
         border: 1px solid #ddd;
         border-radius: 10px;
         box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
       }
-
       .search-bar {
         margin-bottom: 20px;
         width: 100%;
@@ -32,11 +29,16 @@
         margin-left: auto;
         margin-right: auto;
       }
+      .nav-link.active {
+        background-color: DarkTurquoise;
+        color: white;
+        border-radius: 4px;
+        padding: 8px 16px;
+      }
     </style>
   </head>
+<!-- Navigation bar -->
   <body class="p-3 m-0 border-0 bd-example">
-
-    <!-- Navigation bar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-black">
       <div class="container-fluid">
         <a class="navbar-brand" href="index.html">
@@ -57,23 +59,13 @@
       </div>
     </nav>
 
-    <style>
-      .nav-link.active {
-        background-color: DarkTurquoise;
-        color: white;
-        border-radius: 4px;
-        padding: 8px 16px;
-      }
-    </style>
+    
 
     <div class="container mt-5">
       <div class="search-bar">
         <input type="text" id="searchInput" class="form-control" placeholder="Search for employees..." onkeyup="searchEmployees()">
       </div>
-
-      
       <div class="row" id="employeeList">
-
       </div>
     </div>
 
@@ -134,7 +126,7 @@
               </div>
             </div>
           `;
-          employeeList.appendChild(profileCard); // Add employee card
+          employeeList.appendChild(profileCard);
         }
 
         // Display default employees
@@ -152,21 +144,21 @@
               </div>
             </div>
           `;
-          employeeList.appendChild(card); // Add default employee card to employee list
+          employeeList.appendChild(card); 
         });
       }
 
-      // Function to filter employee cards based on search input
+      // Filter Function for employee cards based on search input
       function searchEmployees() {
         const searchInput = document.getElementById('searchInput').value.toLowerCase();
         const employeeCards = document.querySelectorAll('.employee-card');
 
         employeeCards.forEach(card => {
           const name = card.querySelector('.card-title').textContent.toLowerCase();
-          const email = card.querySelector('p').textContent.toLowerCase(); // Includes email
-          const department = card.querySelectorAll('p')[1].textContent.toLowerCase(); // Includes department
-          const jobPosition = card.querySelectorAll('p')[2].textContent.toLowerCase(); // Includes position
-          const dateStarted = card.querySelectorAll('p')[3].textContent.toLowerCase(); // Includes date started
+          const email = card.querySelector('p').textContent.toLowerCase(); 
+          const department = card.querySelectorAll('p')[1].textContent.toLowerCase(); 
+          const jobPosition = card.querySelectorAll('p')[2].textContent.toLowerCase(); 
+          const dateStarted = card.querySelectorAll('p')[3].textContent.toLowerCase(); 
 
           // If any of the fields match the search input, display the card, else hide it
           if (name.includes(searchInput) || email.includes(searchInput) || department.includes(searchInput) || jobPosition.includes(searchInput) || dateStarted.includes(searchInput)) {
@@ -177,33 +169,34 @@
         });
       }
 
-      // Call the function to render the employee cards
+      // Call the function
       window.onload = renderEmployeeCard;
     </script>
 
-    <!-- Footer Code -->
-    <footer class="pt-4 my-md-5 pt-md-5 border-top">
-      <div class="row">
-        <div class="col-12 col-md">
-          <a href="#">
-            <img src="TechLockLogoWhite.png" width="250" alt="" class="img-fluid">
-          </a>
-        </div>
-
-        <div class="col-6 col-md">
-          <h5>Resources</h5>
-          <ul class="list-unstyled text-small">
-            <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Blog</a></li>
-            <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Onboarding</a></li>
-          </ul>
-        </div>
-        <div class="col-6 col-md">
-          <h5>About</h5>
-          <ul class="list-unstyled text-small">
-            <li class="mb-1"><a class="link-secondary text-decoration-none" href="TechLockAboutUs.html">About Us</a></li>
-          </ul>
-        </div>
+   	<!-- Footer Code -->
+  <footer class="pt-4 my-md-5 pt-md-5 border-top">
+    <div class="row">
+      <div class="col-12 col-md">
+       <a href="#">
+      <img src="TechLockLogoWhite.png" width="250" alt="" class="img-fluid">
+    </a>
       </div>
-    </footer>
+
+      <div class="col-6 col-md">
+        <h5>Resources</h5>
+        <ul class="list-unstyled text-small">
+          <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Blog</a></li>
+    <li class="mb-1"><a class="link-secondary text-decoration-none" href="TechLockContact.html">Contact</a></li>
+         
+        </ul>
+      </div>
+      <div class="col-6 col-md">
+        <h5>About</h5>
+        <ul class="list-unstyled text-small">
+          <li class="mb-1"><a class="link-secondary text-decoration-none" href="TechLockAboutUs.html">About Us</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
   </body>
 </html>
