@@ -229,16 +229,7 @@
     </div>
 
     <script>
-      // Filler stuff that shows if theres en error
-      let profile = {
-        name: localStorage.getItem('name') || 'Robert Doe',
-        email: localStorage.getItem('email') || 'Robertdoe@example.com',
-        department: localStorage.getItem('department') || 'IT',
-        jobPosition: localStorage.getItem('jobPosition') || 'Developer',
-        dateStarted: localStorage.getItem('dateStarted') || '2024-12-11'
-      };
-
-      // Initialize default tasks data
+      //default tasks data
       let tasks = [
       { name: "Monthly Reports", status: 50, description: "Production of reports about the project status each month", deadline: "2025-02-01" },
         { name: "Baseline Execution Index", status: 65, description: "Calculates efficiency with baseline tasks", deadline: "2024-05-02" },
@@ -246,14 +237,44 @@
         { name: "MSP Training Manual", status: 75, description: "Guide on Microsoft Project and company guidelines", deadline: "2025-04-07" },
       ];
 
-      //Profile Section
-      function populateProfile() {
-        document.getElementById('profileName').textContent = profile.name;
-        document.getElementById('profileEmail').textContent = profile.email;
-        document.getElementById('profileDepartment').textContent = profile.department;
-        document.getElementById('profileJobPosition').textContent = profile.jobPosition;
-        document.getElementById('profileDateStarted').textContent = profile.dateStarted;
-      }
+  //filler stuff
+let profile = {
+  name: localStorage.getItem('name') || 'Robert Doe',
+  email: localStorage.getItem('email') || 'Robertdoe@example.com',
+  department: localStorage.getItem('department') || 'IT',
+  jobposition: localStorage.getItem('jobposition') || 'Developer',
+  datestarted: localStorage.getItem('datestarted') || '2024-12-11'
+};
+
+// Populate profile section
+function populateProfile() {
+  document.getElementById('profileName').textContent = profile.name;
+  document.getElementById('profileEmail').textContent = profile.email;
+  document.getElementById('profileDepartment').textContent = profile.department;
+  document.getElementById('profileJobPosition').textContent = profile.jobposition;
+  document.getElementById('profileDateStarted').textContent = profile.datestarted;
+}
+
+// Update profile form
+document.getElementById('updateProfileForm').addEventListener('submit', function (e) {
+  e.preventDefault();
+  profile.name = document.getElementById('updateName').value;
+  profile.department = document.getElementById('updateDepartment').value;
+  profile.jobposition = document.getElementById('updateJobPosition').value;
+  profile.datestarted = document.getElementById('updateDateStarted').value;
+
+  // Save profile to localStorage
+  localStorage.setItem('name', profile.name);
+  localStorage.setItem('department', profile.department);
+  localStorage.setItem('jobposition', profile.jobposition);
+  localStorage.setItem('datestarted', profile.datestarted);
+  populateProfile();
+
+  // Close
+  const modal = bootstrap.Modal.getInstance(document.getElementById('updateProfileModal'));
+  modal.hide();
+});
+populateProfile();
 
       // Tasks Table
       function populateTasks() {
@@ -291,19 +312,7 @@
         document.getElementById('newTaskForm').reset();
       });
 
-      // Profile Update
-      document.getElementById('updateProfileForm').addEventListener('submit', function (e) {
-        e.preventDefault();
-        profile.name = document.getElementById('updateName').value;
-        profile.department = document.getElementById('updateDepartment').value;
-        profile.jobPosition = document.getElementById('updateJobPosition').value;
-        profile.dateStarted = document.getElementById('updateDateStarted').value;
-        Object.keys(profile).forEach(key => localStorage.setItem(key, profile[key]));
 
-        populateProfile();
-        const modal = bootstrap.Modal.getInstance(document.getElementById('updateProfileModal'));
-        modal.hide();
-      });
 
       function showUpdateTaskModal(index) {
         const task = tasks[index];
@@ -334,7 +343,6 @@
         tasks.splice(index, 1);
         populateTasks();
       }
-      populateProfile();
       populateTasks();
 
     </script>
