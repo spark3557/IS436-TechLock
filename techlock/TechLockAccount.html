@@ -277,24 +277,32 @@ document.getElementById('updateProfileForm').addEventListener('submit', function
 populateProfile();
 
       // Tasks Table
-      function populateTasks() {
-        const taskList = document.getElementById('taskList');
-        taskList.innerHTML = '';
-        tasks.forEach((task, index) => {
-          const row = document.createElement('tr');
-          row.innerHTML = `
-            <td>${task.name}</td>
-            <td>${task.status}%</td>
-            <td>${task.description}</td>
-            <td>${task.deadline}</td>
-            <td>
-              <button class="btn btn-warning btn-sm" onclick="showUpdateTaskModal(${index})">Update</button>
-              <button class="btn btn-danger btn-sm" onclick="removeTask(${index})">Remove</button>
-            </td>
-          `;
-          taskList.appendChild(row);
-        });
-      }
+  function populateTasks() {
+  const taskList = document.getElementById('taskList');
+  taskList.innerHTML = '';
+  tasks.forEach((task, index) => {
+    const row = document.createElement('tr');
+    row.innerHTML = `
+      <td>${task.name}</td>
+      <td>
+        <div class="progress" style="height: 20px;">
+          <div class="progress-bar" role="progressbar" style="width: ${task.status}%;"
+            aria-valuenow="${task.status}" aria-valuemin="0" aria-valuemax="100">
+            ${task.status}%
+          </div>
+        </div>
+      </td>
+      <td>${task.description}</td>
+      <td>${task.deadline}</td>
+      <td>
+        <button class="btn btn-warning btn-sm" onclick="showUpdateTaskModal(${index})">Update</button>
+        <button class="btn btn-danger btn-sm" onclick="removeTask(${index})">Remove</button>
+      </td>
+    `;
+    taskList.appendChild(row);
+  });
+}
+
 
       // Add new task
       document.getElementById('newTaskForm').addEventListener('submit', function (e) {

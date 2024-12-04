@@ -102,75 +102,71 @@
         }
       ];
 
-      // Function to render employee cards from localStorage and default employees
+      // Geta employee cards from localStorage 
       function renderEmployeeCard() {
-        const name = localStorage.getItem('name');
-        const email = localStorage.getItem('email');
-        const department = localStorage.getItem('department');
-        const jobPosition = localStorage.getItem('jobposition');
-        const dateStarted = localStorage.getItem('datestarted');
-        const employeeList = document.getElementById('employeeList');
+      const name = localStorage.getItem('name');
+      const email = localStorage.getItem('email');
+      const department = localStorage.getItem('department');
+      const jobPosition = localStorage.getItem('jobposition');
+      const employeeList = document.getElementById('employeeList');
 
-        // Display logged-in user profile if data exists in localStorage
-        if (name && email && department && jobPosition && dateStarted) {
-          const profileCard = document.createElement('div');
-          profileCard.classList.add('col-md-4', 'employee-card');
-          profileCard.innerHTML = `
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title">${name}</h5>
-                <p><strong>Email:</strong> <a href="mailto:${email}">${email}</a></p>
-                <p><strong>Department:</strong> ${department}</p>
-                <p><strong>Position:</strong> ${jobPosition}</p>
-                <p><strong>Date Started:</strong> ${dateStarted}</p>
-              </div>
-            </div>
-          `;
-          employeeList.appendChild(profileCard);
-        }
+  // Display logged-in user profile if data exists in localStorage
+  if (name && email && department && jobPosition) {
+    const profileCard = document.createElement('div');
+    profileCard.classList.add('col-md-4', 'employee-card');
+    profileCard.innerHTML = `
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">${name}</h5>
+          <p><strong>Email:</strong> <a href="mailto:${email}">${email}</a></p>
+          <p><strong>Department:</strong> ${department}</p>
+          <p><strong>Position:</strong> ${jobPosition}</p>
+        </div>
+      </div>
+    `;
+    employeeList.appendChild(profileCard);
+  }
 
-        // Display default employees
-        defaultEmployees.forEach(employee => {
-          const card = document.createElement('div');
-          card.classList.add('col-md-4', 'employee-card');
-          card.innerHTML = `
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title">${employee.name}</h5>
-                <p><strong>Email:</strong> <a href="mailto:${employee.email}">${employee.email}</a></p>
-                <p><strong>Department:</strong> ${employee.department}</p>
-                <p><strong>Position:</strong> ${employee.jobPosition}</p>
-                <p><strong>Date Started:</strong> ${employee.dateStarted}</p>
-              </div>
-            </div>
-          `;
-          employeeList.appendChild(card); 
-        });
-      }
+  // Display default employees
+  defaultEmployees.forEach(employee => {
+    const card = document.createElement('div');
+    card.classList.add('col-md-4', 'employee-card');
+    card.innerHTML = `
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">${employee.name}</h5>
+          <p><strong>Email:</strong> <a href="mailto:${employee.email}">${employee.email}</a></p>
+          <p><strong>Department:</strong> ${employee.department}</p>
+          <p><strong>Position:</strong> ${employee.jobPosition}</p>
+        </div>
+      </div>
+    `;
+    employeeList.appendChild(card); 
+  });
+}
 
-      // Filter Function for employee cards based on search input
+      // Filter Function for employees
       function searchEmployees() {
-        const searchInput = document.getElementById('searchInput').value.toLowerCase();
-        const employeeCards = document.querySelectorAll('.employee-card');
+    const searchInput = document.getElementById('searchInput').value.toLowerCase();
+    const employeeCards = document.querySelectorAll('.employee-card');
 
-        employeeCards.forEach(card => {
-          const name = card.querySelector('.card-title').textContent.toLowerCase();
-          const email = card.querySelector('p').textContent.toLowerCase(); 
-          const department = card.querySelectorAll('p')[1].textContent.toLowerCase(); 
-          const jobPosition = card.querySelectorAll('p')[2].textContent.toLowerCase(); 
-          const dateStarted = card.querySelectorAll('p')[3].textContent.toLowerCase(); 
+    employeeCards.forEach(card => {
+    const name = card.querySelector('.card-title').textContent.toLowerCase();
+    const email = card.querySelector('a').textContent.toLowerCase(); 
+    const department = card.querySelectorAll('p')[1].textContent.toLowerCase(); 
+    const jobPosition = card.querySelectorAll('p')[2].textContent.toLowerCase(); 
 
-          // If any of the fields match the search input, display the card, else hide it
-          if (name.includes(searchInput) || email.includes(searchInput) || department.includes(searchInput) || jobPosition.includes(searchInput) || dateStarted.includes(searchInput)) {
-            card.style.display = 'block';
-          } else {
-            card.style.display = 'none';
-          }
-        });
-      }
-
+    // If any of the fields match the search input, display the card; otherwise, hide it
+    if (name.includes(searchInput) || email.includes(searchInput) || department.includes(searchInput) || jobPosition.includes(searchInput)) {
+      card.style.display = 'block';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
       // Call the function
       window.onload = renderEmployeeCard;
+
     </script>
 
    	<!-- Footer Code -->
