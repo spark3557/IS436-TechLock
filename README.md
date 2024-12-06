@@ -1,10 +1,12 @@
 //Full Project Information + Documentation   
 
 # IS436-TECHLOCK: EMPLOYEE DATABASE PLATFORM
+![TechLock](techlock/techlocklogo.png)
 # Documentation
 
 ## Table of Contents
 - [Overview](#overview)
+- [Technologies](#technologies)
 - 
 ### Overview
 Employee database platform (EDP) is a web based platform that handles and manages the data and user profiles of the employees in an organization. The platform provides a centralized view of employee data, task management, and report generation, etc. EDP allows administrators and managers to manage employee profiles, assign and view tasks in an ordered dashboard. With a focus on scalability and accessibility.
@@ -35,6 +37,7 @@ Github Repository
 
 **Programming Languages**  
 Frontend: HTML, CSS, Javascript. Backend: PHP. Database: SQL queries.
+
 
 
 
