@@ -114,6 +114,7 @@
       <div class="profile-info"><strong>Email:</strong> <span id="profileEmail"></span></div>
       <div class="profile-info"><strong>Department:</strong> <span id="profileDepartment"></span></div>
       <div class="profile-info"><strong>Job Position:</strong> <span id="profileJobPosition"></span></div>
+      <div class="profile-info"><strong>Salary:</strong> <span id="profileSalary"></span></div>
       <div class="profile-info"><strong>Date Started:</strong> <span id="profileDateStarted"></span></div>
       <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#updateProfileModal">Update Profile</button>
     </div>
@@ -139,6 +140,10 @@
               <div class="mb-3">
                 <label for="updateJobPosition" class="form-label">Job Position</label>
                 <input type="text" class="form-control" id="updateJobPosition" required>
+              </div>
+              <div class="mb-3">
+                <label for="updateSalary" class="form-label">Salary</label>
+                <input type="text" class="form-control" id="updateSalary" required>
               </div>
               <div class="mb-3">
                 <label for="updateDateStarted" class="form-label">Date Started</label>
@@ -243,6 +248,7 @@ let profile = {
   email: localStorage.getItem('email') || 'Robertdoe@example.com',
   department: localStorage.getItem('department') || 'IT',
   jobposition: localStorage.getItem('jobposition') || 'Developer',
+  salary: localStorage.getItem('salary') || '70000',
   datestarted: localStorage.getItem('datestarted') || '2024-12-11'
 };
 
@@ -252,6 +258,7 @@ function populateProfile() {
   document.getElementById('profileEmail').textContent = profile.email;
   document.getElementById('profileDepartment').textContent = profile.department;
   document.getElementById('profileJobPosition').textContent = profile.jobposition;
+  document.getElementById('profileSalary').textContent = profile.salary;
   document.getElementById('profileDateStarted').textContent = profile.datestarted;
 }
 
@@ -261,12 +268,14 @@ document.getElementById('updateProfileForm').addEventListener('submit', function
   profile.name = document.getElementById('updateName').value;
   profile.department = document.getElementById('updateDepartment').value;
   profile.jobposition = document.getElementById('updateJobPosition').value;
+  profile.salary = document.getElementById('updateSalary').value;
   profile.datestarted = document.getElementById('updateDateStarted').value;
 
   // Save profile to localStorage
   localStorage.setItem('name', profile.name);
   localStorage.setItem('department', profile.department);
   localStorage.setItem('jobposition', profile.jobposition);
+  localStorage.setItem('salary', profile.salary);
   localStorage.setItem('datestarted', profile.datestarted);
   populateProfile();
 
@@ -276,7 +285,7 @@ document.getElementById('updateProfileForm').addEventListener('submit', function
 });
 populateProfile();
 
-      // Tasks Table
+  // Tasks Table
   function populateTasks() {
   const taskList = document.getElementById('taskList');
   taskList.innerHTML = '';
@@ -303,18 +312,15 @@ populateProfile();
   });
 }
 
-
       // Add new task
       document.getElementById('newTaskForm').addEventListener('submit', function (e) {
         e.preventDefault();
-
         const newTask = {
           name: document.getElementById('taskName').value,
           status: document.getElementById('taskStatus').value,
           description: document.getElementById('taskDescription').value,
           deadline: document.getElementById('taskDeadline').value,
         };
-
         tasks.push(newTask);
         populateTasks();
         document.getElementById('newTaskForm').reset();
@@ -356,28 +362,27 @@ populateProfile();
     </script>
 
     	<!-- Footer Code -->
-  <footer class="pt-4 my-md-5 pt-md-5 border-top">
-    <div class="row">
-      <div class="col-12 col-md">
-       <a href="#">
-      <img src="TechLockLogoWhite.png" width="250" alt="" class="img-fluid">
-    </a>
-      </div>
-      <div class="col-6 col-md">
-        <h5>Resources</h5>
-        <ul class="list-unstyled text-small">
-          <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Blog</a></li>
-    <li class="mb-1"><a class="link-secondary text-decoration-none" href="TechLockContact.html">Contact</a></li>
-        </ul>
-      </div>
-      <div class="col-6 col-md">
-        <h5>About</h5>
-        <ul class="list-unstyled text-small">
-          <li class="mb-1"><a class="link-secondary text-decoration-none" href="TechLockAboutUs.html">About Us</a></li>
-        </ul>
-      </div>
-    </div>
-  </footer>
+      <footer class="pt-4 my-md-5 pt-md-5 border-top">
+        <div class="row">
+          <div class="col-12 col-md">
+           <a href="#">
+          <img src="TechLockLogoWhite.png" width="250" alt="" class="img-fluid">
+        </a>
+          </div>
+          <div class="col-6 col-md">
+            <h5>Resources</h5>
+            <ul class="list-unstyled text-small">
+        <li class="mb-1"><a class="link-secondary text-decoration-none" href="TechLockContact.html">Contact</a></li>
+            </ul>
+          </div>
+          <div class="col-6 col-md">
+            <h5>About</h5>
+            <ul class="list-unstyled text-small">
+              <li class="mb-1"><a class="link-secondary text-decoration-none" href="TechLockAboutUs.html">About Us</a></li>
+            </ul>
+          </div>
+        </div>
+      </footer>
 
   </body>
 </html>
