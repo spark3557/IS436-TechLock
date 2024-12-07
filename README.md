@@ -57,7 +57,7 @@ Employees and managers will have to create an account to access and update infor
 
 The user must first access the account page of the website
 
---Add Screenshot of register account page
+<img width="270" alt="RegisterPage" src="https://github.com/user-attachments/assets/715a906f-dc45-4bf1-b551-8cc7b8759a2b">
 
 If the user is new and does not have an account, they should fill out all of the required information like name, email, etc. 
 
@@ -65,7 +65,7 @@ Once they have that information filled out, they can click "Register" which will
 
 #### Login in
 
---Add Screenshot of login screen here
+<img width="275" alt="LoginPage" src="https://github.com/user-attachments/assets/2ec4c96a-d3e1-46cc-97c4-f94f550ad031">
 
 The user should enter their email address and password to login into their account
 
@@ -74,7 +74,7 @@ The user should enter their email address and password to login into their accou
 #### Viewing Tasks 
 From the Profile screen tasks can be viewed and managed. 
 
---Insert screenshot of tasks box here
+<img width="500" alt="TaskPage" src="https://github.com/user-attachments/assets/3401ef70-75b8-42a7-9325-0d06558fdce6">
 
 The tasks section of the profile page contains task name, status, description, deadline, and action. This data is displayed in rows and columns to allow for optimal view and editing experience. 
 
@@ -82,7 +82,7 @@ The tasks section of the profile page contains task name, status, description, d
 
 When a user clicks on the update button a new window opens that allows for the details of that task to be edited and saved
 
---Insert screenshot of edit task screen
+<img width="350" alt="UpdateTaskPage" src="https://github.com/user-attachments/assets/4d73ba43-8242-477a-a9d1-da12bc8e7fc8">
 
 Tasks can also be removed by clicking the "Remove" button.
 
@@ -90,7 +90,7 @@ Tasks can also be removed by clicking the "Remove" button.
 
 To add a new task a user can scroll down to the "Add New Task" section
 
---Insert Screenshot with filled options
+<img width="500" alt="AddTaskPage" src="https://github.com/user-attachments/assets/4f0451cc-c7ed-4cf7-a5b2-8ae499c64971">
 
 To add a new task the user must fill out a task name, status, description, and deadline. Then click "Add Task" for the task to be added to the "Tasks" section above
 
