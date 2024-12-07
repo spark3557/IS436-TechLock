@@ -20,7 +20,10 @@ sponsored by:
    		* [Feasibility Analysis](#feasibility-analysis)
  	* [Analysis](#analysis)
   	* [Design](#design)
+  		* [System Architecture](#system-architecture)
+  	 	* [Database Design](#database-design-erd)	 	 
   	* [Implementation](#implementation)
+  		* [Docker](#docker) 
   	* [Operation and Maintenance](#operation-and-maintenance)   	
 * [Diagrams & Visualization](#diagrams)
 * [Technologies](#technologies)
@@ -110,7 +113,7 @@ The 5 phases of system design make up the foundation behind how the system will 
 
 ##### Systems Request
 	
-*Project Sponsor: BG Solutions*  
+*Project Sponsor:* BG Solutions 
 
 *Business need:* This project has been initiated to allow for the efficient management of all employee data through an online website. BG Solutions needs an all-encompassing platform to host information about their employees. This web platform has to be scalable to accommodate their increasing company size. 
 Currently, BG Solutions relies on different online applications to handle different aspects of their employees’ information. They need a centralized system that can handle everything in one place. This would vastly improve operational efficiency, data accuracy, and streamline the management of employees’ tasks.  
@@ -146,10 +149,33 @@ Estimates of tangible and intangible value to the company include the following:
 
 
 #### Analysis
+* Interviews
+* Questionnaire
+* Documents Analysis
+* Requirements Definition (Functional / Non-functional)
+* Use Case Analysis
+* Data Flow Diagrams
 
 #### Design
 
+##### System Architecture
+
+##### Database Design ERD
+
+
 #### Implementation
+##### Docker
+* Environment Setup
+	* Installation of Docker to local environment to simplify the deployment process. Docker-compose.yaml file to manage the application and database containers. 	
+* EDP website development.
+	* Focus on [frontend, backend, and database](#technologies). Frontend: a user-friendly interface for employees to manage and view profiles and tasks. Backend: Handle data operations, (CRUD) employee records. Connect to database.
+* Containerization and Deployment
+	* Site and code were packaged into Docker containers to simplify the hosting and ensure consistency across multiple systems. Deployed website accessible on local host. 
+* Testing / Debugging
+	* Website was constantly tested after every commit to ensure that all features were working as intended. Any errors found during the testing phase were fixed before deployment. 
+* Documentation Write up
+	* Project Documentation written using README.md file.  
+
 
 #### Operation and Maintenance
 
