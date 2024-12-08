@@ -237,7 +237,7 @@ Estimates of tangible and intangible value to the company include the following:
 
 |Client| Web Server| Application Server| Database Server|
 |---- | ----| ----| ----|
-|i7 processors, 16GB RAM, 512 GB storage|dual core Intel Pentium Processors, 2 GB RAM, 500 GB drive | quad core Intel Pentium Processors, 4GB RAM, 500 GB drive| dual core Intel Pentium Processors, 4 GB RAM, 500 GB drive |
+|i7 processors <br> 16GB RAM <br>512 GB storage|dual core Intel Pentium Processors <br> 2 GB RAM <br> 500 GB drive | quad core Intel Pentium Processors <br> 4GB RAM <br>500 GB drive| dual core Intel Pentium Processors <br> 4 GB RAM <br> 500 GB drive |
 
 | More Specifications      | Client     | Web server  | Application Server  | Database Server  |
 | ----------------- |---------| -----|--- |---|
