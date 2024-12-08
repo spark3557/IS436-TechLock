@@ -38,7 +38,7 @@ Employee database platform (EDP) is a web based platform that handles and manage
 ### Objectives
 
 ### Features of EDP
-This website has multiple features that are very useful to employees and Human Resource Managers
+This website has multiple key features that are very useful to users - employees, managers, and administrators. 
 
 ##### Employee Database Dashboard
 
@@ -107,8 +107,21 @@ To add a new task the user must fill out a task name, status, description, and d
 
 ### Project Timeline
 
+|Phase| EDP Timeline| 
+|----           |----          |
+|Planning phase |Project Selection + Systems Request Proposal by *09/29/2024*|
+|Analysis Phase |Requirements & Use Case Analysis by *10/13/2024* <br> Process & Data Modeling by *10/27/2024*|
+|Design Phase   |Architecture & User Interface Design by *11/20/2024*|
+|Implementation Phase|Docker Setup + Site Implementation by *12/08/2024*|
+|Operation & Maintenance **(current)**|Demo by *12/09/2024*|
+
 ### 5 phases of System Design
-The 5 phases of system design make up the foundation behind how the system will be built. 
+The 5 phases of system design make up the foundation behind how the system will be built. They are:
+* [Planning](#planning)
+* [Analysis](#analysis)
+* [Design](#design)
+* [Implementation](#implementation)
+* [Operation and Maintenance](#operation-and-maintenance)
 
 #### Planning
 
@@ -155,15 +168,30 @@ Estimates of tangible and intangible value to the company include the following:
 * Documents Analysis
 * Requirements Definition (Functional / Non-functional)
 * Use Case Analysis
-* Data Flow Diagrams
+* [Data Flow Diagrams](#diagrams)
 
 #### Design
 
 ##### System Architecture
 
+Following the examples shown in IS 436 and shared by the professor, we have modeled a system architecture diagram that includes: network, servers, database, security, monitoring, API and all the essential components of our system. 
+The diagram shows the client-server architecture of our system - with the client interacting with the front end via the EDP’s user interface, and the servers handling the other end of the interaction (frontend, backend, database servers). This makes for a 3-tiered architecture.  
+
+The client/user will interact with the system via their web browser (over the internet). These interactions will pass through the security layer, with HTTPS and SSL ensuring secure communication between the client and server. Session-based authentication will allow for verified user sessions to be saved over a short period of time.  The frontend layer gives the user an accessible web-based interface. This interface will be built using HTML, CSS, and Javascript.   
+
+In the backend, PHP processes any requests sent by the frontend server, with Rest API acting as the bridge.  Application logic is handled using PHP, which also connects to our database. Activities such as user login, data and records retrieval, etc., will be handled using the PHP scripts. We will also implement business logic using PHP.   
+
+The backend then interacts with the MySQL database. SQL queries are used for the database operations. All data in the EDP will be stored in MySQL database. For monitoring, we are using Uptime Kuma to check our servers’ uptime and track system performance.    
+
+[Limitations addressed below](#limitations)
+
+
 ![System architecture diagram](techlock/sysarcdiagram.png)
 
 ##### Database Design ERD
+Account table will consist of the user's profile, and will consist of their account id, full name, job position, the date they first started working, their salary, their department, and the password for the account.
+The task table will have a task id, and have a foreign key from the account table. Tasks will also have a task name, the description, percentage or status finished, and a deadline for the task.
+One account can be assigned from 0 to many tasks, whereas each task can only be assigned to 1 account at the same time
 
 ![ERD](techlock/erd.png)
 
