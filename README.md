@@ -27,7 +27,8 @@ sponsored by:
   	* [Operation and Maintenance](#operation-and-maintenance)   	
 * [Diagrams & Visualization](#diagrams)
 * [Technologies](#technologies)
-* [Hardware & software specifications](#specifications) 
+* [Hardware & software specifications](#specifications)
+* [Limitations](#limitations)
 * [Group Members](#members)
 
 
@@ -160,8 +161,11 @@ Estimates of tangible and intangible value to the company include the following:
 
 ##### System Architecture
 
+![System architecture diagram](techlock/sysarcdiagram.png)
+
 ##### Database Design ERD
 
+![ERD](techlock/erd.png)
 
 #### Implementation
 ##### Docker
@@ -178,13 +182,21 @@ Estimates of tangible and intangible value to the company include the following:
 
 
 #### Operation and Maintenance
-
+* Monitor system performance using Uptime Kuma.
+* Automatic backups to database.
+* Address any user feedback (bugs and errors).
+* Periodic updates with new features and site enhancements.
+  
 ### Diagrams
-* Use Cases
-* Data Flow Diagrams (DFDs)
-* Entity Relationship Diagram (ERD)
-* System Architecture Diagram
+* [Use Cases](#use-case-diagram)
+* [Data Flow Diagrams (DFDs)](#data-flow-diagram)
+* [Entity Relationship Diagram (ERD)](#database-design-erd)
+* [System Architecture Diagram](#system-architecture)
 
+#### Use Case Diagram
+![use case diagram](techlock/usecase.png)
+#### Data Flow Diagram
+![data flow diagram](techlock/dfd.png)
 
 ### Technologies
 * **Frontend:**   
@@ -222,10 +234,40 @@ Estimates of tangible and intangible value to the company include the following:
 
 ### Specifications
 #### Hardware
+* Client:
+	* i7 processors
+ 	* 16GB RAM
+  	* 512 GB storage
+* Web server:
+	* dual core Intel Pentium Processors
+ 	* 2 GB RAM
+  	* 500 GB drive
+* Application server:
+	* quad core Intel Pentium Processors
+ 	* 4 GB RAM
+  	* 500 GB drive
+* Database server:
+	* dual core Intel Pentium Processors
+ 	* 4 GB RAM
+  	* 500 GB drive
+
+
+| More Specifications      | Client     | Web server  | Application Server  | Database Server  |
+| ----------------- |---------| -----|--- |---|
+| Operating System  | Windows 10 | Linux | Linux | Linux|
+| Network     | 1 Gig Ethernet Or company provided WiFi  |10 Gig hookup w/ 3 backup lines |10 Gig hookup w/ 3 backup lines |10 Gig hookup w/ 3 backup lines |
+
+
 
 
 
 #### Software
+
+[Software Specifications](#technologies)
+
+### Limitations
+Our work does not fully encompass the needs of the EDP. For example, scalability is an issue that might arise in the future as the number of employees / companies using EDP grows, massively increasing the amount of data that the database has to store. We plan to tackle this potential problem by multiplying the number of servers we use. We also aim to explore the incorporation of cloud computing in our system, possibly by using cloud services to host our front end or back end. 
+
 
 ### Members
 * *_Savannah Park : Frontend Developer / Budget Analyst_*
