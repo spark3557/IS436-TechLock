@@ -234,23 +234,10 @@ Estimates of tangible and intangible value to the company include the following:
 
 ### Specifications
 #### Hardware
-* Client:
-	* i7 processors
- 	* 16GB RAM
-  	* 512 GB storage
-* Web server:
-	* dual core Intel Pentium Processors
- 	* 2 GB RAM
-  	* 500 GB drive
-* Application server:
-	* quad core Intel Pentium Processors
- 	* 4 GB RAM
-  	* 500 GB drive
-* Database server:
-	* dual core Intel Pentium Processors
- 	* 4 GB RAM
-  	* 500 GB drive
 
+|Client| Web Server| Application Server| Database Server|
+|---- | ----| ----| ----|
+|i7 processors, 16GB RAM, 512 GB storage|dual core Intel Pentium Processors, 2 GB RAM, 500 GB drive | quad core Intel Pentium Processors, 4GB RAM, 500 GB drive| dual core Intel Pentium Processors, 4 GB RAM, 500 GB drive |
 
 | More Specifications      | Client     | Web server  | Application Server  | Database Server  |
 | ----------------- |---------| -----|--- |---|
