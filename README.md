@@ -33,7 +33,7 @@ sponsored by:
 
 
 ### Overview
-Employee database platform (EDP) is a web based platform that handles and manages the data and user profiles of the employees in an organization. The platform provides a centralized view of employee data, task management, and report generation, etc. EDP allows administrators and managers to manage employee profiles, assign and view tasks in an ordered dashboard. With a focus on scalability and accessibility.
+Employee database platform (EDP) is a web based platform that handles and manages the data and user profiles of the employees in an organization. The platform provides a centralized view of employee data, and assist in their task management, etc. EDP allows employee to manage their profiles, and assign and view tasks in an ordered dashboard. With a focus on scalability and accessibility.
 
 ### Objectives
 
@@ -132,11 +132,10 @@ The 5 phases of system design make up the foundation behind how the system will 
 *Business need:* This project has been initiated to allow for the efficient management of all employee data through an online website. BG Solutions needs an all-encompassing platform to host information about their employees. This web platform has to be scalable to accommodate their increasing company size. 
 Currently, BG Solutions relies on different online applications to handle different aspects of their employees’ information. They need a centralized system that can handle everything in one place. This would vastly improve operational efficiency, data accuracy, and streamline the management of employees’ tasks.  
 
-*Business requirements:* Using the Employee Database Platform, administrators at BG Solutions will be able to search for specific employees and look at all current tasks assigned to them, along with their personal information (depending on admin’s security privileges). They will also be able to group and sort different employees based on their preferred criteria. The specific functionality that the system should have includes the following:  
-* Create, edit, and delete employee account
+*Business requirements:* Using the Employee Database Platform, administrators at BG Solutions will be able to search for specific employees. They will also be able to group and sort different employees based on their preferred criteria. The specific functionality that the system should have includes the following:  
+* Create and edit employee account
 * Choose the type of employee account and populate employee information based on the type of account.
 * Assign the employee account to a specific group/manager.
-* Enable managers to access specific information of their employees, and assign + monitor tasks accordingly.
 * Search, filter, and sort functionality.
 * Automatic reminders and updates for employees regarding their assigned tasks.
 * Need a secure login system with 2FA.
