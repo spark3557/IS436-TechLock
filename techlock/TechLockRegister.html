@@ -94,7 +94,7 @@
       document.getElementById("contactForm").addEventListener("submit", function(event) {
         event.preventDefault(); 
     
-        // user input values
+        // user input
         const name = document.getElementById("name").value;
         const email = document.getElementById("emailAddress").value;
         const password = document.getElementById("password").value;
@@ -103,7 +103,7 @@
         const salary = document.getElementById("salary").value;
         const dateStarted = document.getElementById("datestarted").value;
     
-        //user data to localStorage
+        //user localStorage data
         localStorage.setItem('name', name);
         localStorage.setItem('email', email);
         localStorage.setItem('password', password);
